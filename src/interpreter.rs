@@ -1,14 +1,15 @@
-use std::fmt::Display;
-
 use crate::memory::Memory;
 
 pub enum Param {
     Mem(usize),
     Const(u8),
     MemIndex,
+    NoParam,
 }
-
-type InstructionIndex = usize;
+pub enum InstructionIndex {
+    InstructionIndex(usize),
+    NoIndex,
+}
 
 pub enum Instruction {
     Add(Param),
@@ -16,13 +17,15 @@ pub enum Instruction {
     Load(Param),
     Inc,
     Dec,
-    Jump(InstructionIndex)
+    Jump(InstructionIndex),
+    NoInstruction,
 }
 pub struct Interpreter {
     pub memory: Memory,
     pub accumulator: u8,
     pub index: usize,
 }
+
 
 impl Interpreter {
     pub fn new() -> Self {

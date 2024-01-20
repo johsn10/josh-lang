@@ -13,11 +13,10 @@ use interpreter::Interpreter;
 fn App() -> Html {
     let textbox_input_handler = use_state(String::default);
     let on_textbox_input = Callback::from(|input: String| {
-        let mut _interpreter = Interpreter::new();
-        match _interpreter.memory.parse_str_to_instructions(&input) {
+        let mut interpreter = Interpreter::new();
+        match interpreter.memory.instructions_string_to_instructions(&input) {
             None => log!("Not valid"),
             Some(()) => log!("Valid"),
-            _ => (),
         };
     });
     html! {
