@@ -1,15 +1,13 @@
 use crate::memory::Memory;
 
+#[derive(PartialEq, Clone, Copy)]
 pub enum Param {
     Mem(usize),
     Const(u8),
-    MemIndex,
-    NoParam,
-}
-pub enum InstructionIndex {
+    Index,
     InstructionIndex(usize),
-    NoIndex,
 }
+
 
 pub enum Instruction {
     Add(Param),
@@ -17,8 +15,7 @@ pub enum Instruction {
     Load(Param),
     Inc,
     Dec,
-    Jump(InstructionIndex),
-    NoInstruction,
+    Jump(Param),
 }
 pub struct Interpreter {
     pub memory: Memory,
