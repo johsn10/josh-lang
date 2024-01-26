@@ -1,10 +1,11 @@
 use gloo_console::log;
 use substring::Substring;
 use regex::Regex;
-
+use std::iter::Iterator;
 use crate::types::Instruction::{*, self};
 use crate::types::Param::{*, self};
 
+#[derive(Clone)]
 pub struct Memory {
     pub data: Vec<i32>,
     pub instructions: Vec<Instruction>,
@@ -13,7 +14,7 @@ pub struct Memory {
 impl Memory {
     pub fn new(memory_size: usize) -> Self {
         Memory {
-            data: vec![0; memory_size],
+            data: vec![0_i32;memory_size],
             instructions: vec![],
         }
     }

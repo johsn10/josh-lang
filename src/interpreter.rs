@@ -1,8 +1,9 @@
 use gloo_console::log;
-use crate::memory::{self, Memory};
+use crate::memory::Memory;
 use crate::types::Instruction::{*, self};
 use crate::types::Param::*;
 
+#[derive(Clone)]
 pub struct Interpreter {
     pub memory: Memory,
     pub accumulator: i32,
