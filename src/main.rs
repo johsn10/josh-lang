@@ -46,12 +46,13 @@ fn get_vec_from_state(state: &UseStateHandle<Vec<i32>>) -> Vec<i32> {
 
 #[function_component]
 fn App() -> Html {
-    let mem_handle = use_state(|| vec![0_i32;0]);
-    let textbox_input_handler = use_state(String::default);
+    let mem_size: usize = 100;
+
+    let mem_handle = use_state(|| vec![0_i32;mem_size.clone()]);
 
     let mem_handle_clone = mem_handle.clone();
     let on_textbox_input = Callback::from(move |input: String| {
-        let mut interpreter = Interpreter::new(100);
+        let mut interpreter = Interpreter::new(mem_size);
         match interpreter.memory.store_instruction_str(&input) {
             Ok(_) => run_interpreter(&mut interpreter),
             Err(line) => log!(format!("Error on line: {}", line)),
@@ -64,7 +65,6 @@ fn App() -> Html {
             <h1 class="title"> {"WASM Interpreter"} </h1>            
             <TextInput on_textbox_input={on_textbox_input}/>
             <MemTable mem={get_vec_from_state(&mem_handle)}/>
-            <p>{textbox_input_handler.to_string()}</p>
         </div>
     }
 }

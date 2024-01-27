@@ -12,7 +12,7 @@ pub fn MemTable(props: &MemTableProps) -> Html{
     for num in props.mem {
         text = format!("{} {}", text, num.to_string());
     }
-    html!{
-        <p>{text}</p>
+    html! {
+        <p class="memory">{text}</p>
     }
 }

@@ -32,7 +32,7 @@ impl Interpreter {
         }
     }
     pub fn run(&mut self) -> Result<InterpreterResult, InterpreterErr>{
-        let max_instruction: i32 = 1000;
+        let max_instruction: i32 = 5_000;
         let instructions: Vec<Instruction> = self.memory.instructions.to_vec();
         let mut total_instructions_run: i32 = 0;
         while self.instr_pointer<instructions.len() {
